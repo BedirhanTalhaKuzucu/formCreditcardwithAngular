@@ -1,0 +1,12 @@
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <app-input label="Isim" [control]="$any(cardForm).get('name')"></app-input>
+  <app-input label="Kart Numarası" [control]="$any(cardForm).get('cardNumber')"></app-input>
+  <app-input label="Son Kullanma Tarihi" [control]="$any(cardForm).get('expiration')"></app-input>
+  <app-input label="Güvenlik Kodu" [control]="$any(cardForm).get('securityCode')"></app-input>
+  <button class="button is-warning" (click)="ResetForm()" type="button">Temizle</button>
+  <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">Kaydet</button>
+</form>
+
+<div>Form içeriği: {{cardForm.value | json}}</div>
+<div>Form valid mi: {{cardForm.valid ? "evet" :"hayır"}}</div>
+<div>Form hataları: {{ cardForm.get('name')?.errors | json}}</div>
